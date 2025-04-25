@@ -5,7 +5,7 @@
 
 
 import os
-os.environ['GEMINI_API_KEY'] = 'AIzaSyB0NXK3cDwhotSiEFKbChqKAlkshdyc5x4'
+os.environ['GEMINI_API_KEY'] = 'Google Key'
 
 
 # In[2]:

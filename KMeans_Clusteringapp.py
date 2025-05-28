@@ -1,14 +1,21 @@
-# K-Means Clustering
-
-#Importing libraries
+import streamlit as st
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
-#Importing the Dataset and identifying IV(x) variable
-ds = pd.read_csv(r'/Users/aviswe/Desktop/830/Datasets/Mall_Customers.csv')
-x=ds.iloc[:,[3,4]].values
 
-#Using the elbow method to find the optimal number of clusters
+
+st.title("🔍 KMeans Clustering")
+
+# Upload CSV
+uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
+if uploaded_file is not None:
+    # Load dataset
+    dataset = pd.read_csv(uploaded_file)
+    st.write("### Dataset Preview")
+    st.dataframe(dataset.head())
+
+# Feature selection
+x=dataset.iloc[:,[3,4]].values
 
 from sklearn.cluster import KMeans
 wcss=[]
@@ -21,8 +28,6 @@ plt.title('The Elbow Method')
 plt.xlabel('Number of clusters')
 plt.ylabel('wcss')
 plt.show()
-              
-
 #Training the K-Means model on the dataset
 kmeans = KMeans(n_clusters=5, init="k-means++", random_state=42)
 y_kmeans = kmeans.fit_predict(x)
@@ -39,5 +44,3 @@ plt.xlabel('Annual Income(k$)')
 plt.ylabel('Spending Score(1-100)')
 plt.legenc()
 plt.show()  
-
-                  
